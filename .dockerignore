@@ -7,3 +7,5 @@ packages/regression_model
 *.log
 .git
 .gitignore
+lecture
+assignment
