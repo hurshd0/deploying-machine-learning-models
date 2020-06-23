@@ -5,7 +5,6 @@ OUTPUT_SCALER_PATH = 'scaler.pkl'
 OUTPUT_MODEL_PATH = 'lasso_regression.pkl'
 
 
-
 # ======= PARAMETERS ===============
 
 # imputation parameters
@@ -33,7 +32,6 @@ FREQUENT_LABELS = {
     'PavedDrive': ['N', 'P', 'Y']}
 
 
-
 ENCODING_MAPPINGS = {'MSZoning': {'Rare': 0, 'RM': 1, 'RH': 2, 'RL': 3, 'FV': 4},
                      'Neighborhood': {'IDOTRR': 0, 'MeadowV': 1, 'BrDale': 2, 'Edwards': 3,
                                       'BrkSide': 4, 'OldTown': 5, 'Sawyer': 6, 'SWISU': 7, 'NAmes': 8,
@@ -54,7 +52,6 @@ ENCODING_MAPPINGS = {'MSZoning': {'Rare': 0, 'RM': 1, 'RH': 2, 'RL': 3, 'FV': 4}
 
 
 # ======= FEATURE GROUPS =============
-                     
 # variable groups for engineering steps
 TARGET = 'SalePrice'
 
@@ -70,16 +67,16 @@ NUMERICAL_LOG = ['LotFrontage', '1stFlrSF', 'GrLivArea', 'SalePrice']
 
 # variables to encode
 CATEGORICAL_ENCODE = ['MSZoning', 'Neighborhood', 'RoofStyle',
-                          'MasVnrType', 'BsmtQual', 'BsmtExposure',
-                          'HeatingQC', 'CentralAir', 'KitchenQual',
-                          'FireplaceQu', 'GarageType', 'GarageFinish',
-                          'PavedDrive']
+                      'MasVnrType', 'BsmtQual', 'BsmtExposure',
+                      'HeatingQC', 'CentralAir', 'KitchenQual',
+                      'FireplaceQu', 'GarageType', 'GarageFinish',
+                      'PavedDrive']
 
 
 # selected features for training
 FEATURES = ['MSSubClass', 'MSZoning', 'Neighborhood', 'OverallQual',
-           'OverallCond', 'YearRemodAdd', 'RoofStyle', 'MasVnrType',
-           'BsmtQual', 'BsmtExposure', 'HeatingQC', 'CentralAir',
-           '1stFlrSF', 'GrLivArea', 'BsmtFullBath', 'KitchenQual',
-           'Fireplaces', 'FireplaceQu', 'GarageType', 'GarageFinish',
-           'GarageCars', 'PavedDrive', 'LotFrontage']
+            'OverallCond', 'YearRemodAdd', 'RoofStyle', 'MasVnrType',
+            'BsmtQual', 'BsmtExposure', 'HeatingQC', 'CentralAir',
+            '1stFlrSF', 'GrLivArea', 'BsmtFullBath', 'KitchenQual',
+            'Fireplaces', 'FireplaceQu', 'GarageType', 'GarageFinish',
+            'GarageCars', 'PavedDrive', 'LotFrontage']

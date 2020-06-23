@@ -35,7 +35,7 @@ def extract_cabin_letter(df, var):
 
 def add_missing_indicator(df, var):
     # function adds a binary missing value indicator
-    df[var+'_NA'] = np.where(df[var].isnull(), 1, 0)
+    df[var+'_na'] = np.where(df[var].isnull(), 1, 0)
     return df
 
 
@@ -112,3 +112,5 @@ def train_model(df, target, output_path):
 
 def predict(df, model):
     # load model and get predictions
+    model = joblib.load(model)
+    return model.predict(df)
