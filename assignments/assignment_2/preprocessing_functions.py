@@ -12,12 +12,12 @@ import joblib
 # ================================================
 
 def load_data(df_path):
-    # Function loads data for training
+    """Loads csv file for training"""
     return pd.read_csv(df_path)
 
 
 def divide_train_test(df, target):
-    # Function divides data set in train and test
+    """Splits data into train, test distribution"""
     X_train, X_test, y_train, y_test = train_test_split(
         df.drop(target, axis=1),  # predictors
         df[target],  # target
@@ -27,33 +27,31 @@ def divide_train_test(df, target):
     return X_train, X_test, y_train, y_test
 
 
-def extract_cabin_letter(df, var):
-    # captures the first letter
-    df[var] = df[var].str[0]
-    return df
-
-
 def add_missing_indicator(df, var):
-    # function adds a binary missing value indicator
+    """Adds binary indicator for missing values"""
     df[var+'_na'] = np.where(df[var].isnull(), 1, 0)
     return df
 
 
 def impute_na(df, var, replacement='Missing'):
-    # function replaces NA by value entered by user
-    # or by string Missing (default behaviour)
+    """
+    Replaces NaN by value entered by user or by string 
+    'Missing' as (default behaviour)
+    """
     return df[var].fillna(replacement)
 
 
 def remove_rare_labels(df, var, frequent_labels):
-    # groups labels that are not in the frequent list into the umbrella
-    # group Rare
+    """
+    Groups labels that are not in the frequent list into the umbrella term
+    "Rare". 
+    """
     return np.where(df[var].isin(frequent_labels), df[var], 'Rare')
 
 
 def encode_categorical(df, var):
     """
-    adds ohe variables and removes original categorical variables
+    Adds ohe variables and removes original categorical variables
     ohe = one hot encoding
     """
     df = df.copy()
@@ -70,19 +68,14 @@ def check_dummy_variables(df, dummy_list):
     Checks that all missing variables where added when encoding, otherwise
     adds the ones that are missing
     """
-    missing_vars = [var for var in dummy_list if var not in df.columns]
-
-    if len(missing_vars) == 0:
-        print('All dummies were added')
-    else:
-        for var in missing_vars:
+    for var in dummy_list:
+        if var not in df.columns:
             df[var] = 0
-
     return df
 
 
 def train_scaler(df, output_path):
-    """trains and saves scaler"""
+    """Trains and saves scaler"""
     scaler = StandardScaler()
     scaler.fit(df)
     joblib.dump(scaler, output_path)
@@ -90,13 +83,13 @@ def train_scaler(df, output_path):
 
 
 def scale_features(df, output_path):
-    """loads the scaler and scales data"""
+    """Loads the scaler and scales data"""
     scaler = joblib.load(output_path)
     return scaler.transform(df)
 
 
 def train_model(df, target, output_path):
-    """ trains and saves the model
+    """Trains and saves the model
     """
     # initialise the model
     lin_model = LogisticRegression(C=0.0005, random_state=0)
@@ -111,6 +104,12 @@ def train_model(df, target, output_path):
 
 
 def predict(df, model):
-    # load model and get predictions
+    """Loads model and get predictions"""
     model = joblib.load(model)
     return model.predict(df)
+
+
+def predict_proba(df, model):
+    """Loads model and get predictions probabilties"""
+    model = joblib.load(model)
+    return model.predict_proba(df)
