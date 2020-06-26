@@ -1,5 +1,5 @@
-PATH_TO_DATASET = "houseprice.csv"
-                     
+PATH_TO_DATASET = "../houseprice.csv"
+
 TARGET = 'SalePrice'
 
 CATEGORICAL_TO_IMPUTE = ['MasVnrType', 'BsmtQual', 'BsmtExposure',
@@ -19,8 +19,8 @@ CATEGORICAL_ENCODE = ['MSZoning', 'Neighborhood', 'RoofStyle',
 
 
 FEATURES = ['MSSubClass', 'MSZoning', 'Neighborhood', 'OverallQual',
-           'OverallCond', 'YearRemodAdd', 'RoofStyle', 'MasVnrType',
-           'BsmtQual', 'BsmtExposure', 'HeatingQC', 'CentralAir',
-           '1stFlrSF', 'GrLivArea', 'BsmtFullBath', 'KitchenQual',
-           'Fireplaces', 'FireplaceQu', 'GarageType', 'GarageFinish',
-           'GarageCars', 'PavedDrive', 'LotFrontage']
+            'OverallCond', 'YearRemodAdd', 'RoofStyle', 'MasVnrType',
+            'BsmtQual', 'BsmtExposure', 'HeatingQC', 'CentralAir',
+            '1stFlrSF', 'GrLivArea', 'BsmtFullBath', 'KitchenQual',
+            'Fireplaces', 'FireplaceQu', 'GarageType', 'GarageFinish',
+            'GarageCars', 'PavedDrive', 'LotFrontage']
