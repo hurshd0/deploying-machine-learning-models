@@ -63,7 +63,7 @@ class NumericalImputer(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         X = X.copy()
-        for var in self.variables():
+        for var in self.variables:
             X[var] = X[var].fillna(self.imputer_dict_[var])
         return X
 
