@@ -1,0 +1,11 @@
+jupyter_notebooks*
+*/env*
+*/venv*
+.circleci*
+packages/regression_model
+*.env
+*.log
+.git
+.gitignore
+lecture
+assignment

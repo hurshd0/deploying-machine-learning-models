@@ -12,6 +12,7 @@ prepare_venv: &prepare_venv
       python3 -m venv venv
       source venv/bin/activate
       pip install --upgrade pip
+
 fetch_data: &fetch_data
   run:
     name: Set script permissions and fetch data
@@ -19,6 +20,7 @@ fetch_data: &fetch_data
       source venv/bin/activate
       chmod +x ./scripts/fetch_kaggle_dataset.sh
       ./scripts/fetch_kaggle_dataset.sh
+
 jobs:
   test_regression_model:
     <<: *defaults
@@ -41,6 +43,7 @@ jobs:
           command: |
             . venv/bin/activate
             py.test -vv packages/regression_model/tests
+
   test_ml_api:
     <<: *defaults
     steps:
@@ -66,23 +69,24 @@ jobs:
     steps:
       - checkout
       - *prepare_venv
-      - run:
+      - run: 
           name: Install requirements
           command: |
             . venv/bin/activate
             pip install -r packages/regression_model/requirements.txt
       - *fetch_data
-      - run:
+      - run: 
           name: Train model
           command: |
             . venv/bin/activate
             PYTHONPATH=./packages/regression_model python3 packages/regression_model/regression_model/train_pipeline.py
-      - run:
+      - run: 
           name: Publish model to Gemfury
           command: |
             . venv/bin/activate
             chmod +x ./scripts/publish_model.sh
             ./scripts/publish_model.sh ./packages/regression_model/
+
   section_9_differential_tests:
     <<: *defaults
     steps:
@@ -100,6 +104,7 @@ jobs:
             . venv/bin/activate
             pip install -r packages/ml_api/requirements.txt
             py.test -vv packages/ml_api/tests -m differential
+
 workflows:
   version: 2
   test-all:
